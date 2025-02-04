@@ -73,7 +73,8 @@ if selected == 'Home':
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
     st.title('Diabetes Prediction using ML')
-
+ # Display the logo at the top of the page
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
@@ -127,7 +128,8 @@ if selected == 'Diabetes Prediction':
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
     st.title('Heart Disease Prediction using ML')
-
+ # Display the logo at the top of the page
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
@@ -192,7 +194,8 @@ if selected == 'Heart Disease Prediction':
 # Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease Prediction using ML")
-
+ # Display the logo at the top of the page
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
