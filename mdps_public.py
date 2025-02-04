@@ -72,9 +72,9 @@ if selected == 'Home':
 
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
-    st.title('Diabetes Prediction using ML')
- # Display the logo at the top of the page
+     # Display the logo at the top of the page
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
+    st.title('Diabetes Prediction using ML')
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
