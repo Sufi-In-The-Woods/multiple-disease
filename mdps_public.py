@@ -15,18 +15,60 @@ except Exception as e:
 with st.sidebar:
     selected = option_menu(
         'Multiple Disease Prediction System',
-        ['Diabetes Prediction', 'Heart Disease Prediction', 'Parkinsons Prediction'],
-        icons=['activity', 'heart', 'person'],
-        default_index=0
+        ['Home', 'Diabetes Prediction', 'Heart Disease Prediction', 'Parkinsons Prediction'],  # Add 'Home' here
+        icons=['house', 'activity', 'heart', 'person'],  # Add 'house' icon for Home
+        default_index=0  # Set Home as the default page
     )
 
-# Function to predict diabetes
-def predict_diabetes(Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age):
-    try:
-        prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-        return 'The person is diabetic' if prediction[0] == 1 else 'The person is not diabetic'
-    except Exception as e:
-        return f"Error in prediction: {e}"
+# Home Page
+if selected == 'Home':
+    # Display the logo at the top of the page
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
+
+    st.title("Welcome to EarlyMed - Your Early Disease Detection Tool")
+    
+    # Welcome text
+    st.markdown("""
+    ### 🩺 **About EarlyMed**
+    EarlyMed is a SaaS platform designed to help you understand your medical test results before visiting a doctor. 
+    If you've recently undergone medical tests at a pathology lab but haven't had the chance to consult a doctor yet, 
+    this tool can provide you with preliminary insights into your health.
+
+    ### 🎯 **What We Diagnose**
+    EarlyMed currently supports the diagnosis of the following diseases:
+    1. **Diabetes**: Predicts the likelihood of diabetes based on factors like glucose levels, blood pressure, and BMI.
+    2. **Heart Disease**: Assesses the risk of heart disease using parameters like cholesterol levels, blood pressure, and ECG results.
+    3. **Parkinson's Disease**: Evaluates the possibility of Parkinson's disease using voice analysis and other biomarkers.
+
+    ### 🧪 **How to Use EarlyMed**
+    To get started, you'll need the results of certain medical tests. If you haven't undergone these tests yet, 
+    we recommend visiting a nearby diagnostic center or pathology lab. Here are some common tests you might need:
+
+    #### Common Tests and Their Purposes:
+    - **Lipid Profile**: Measures cholesterol levels (e.g., LDL, HDL, triglycerides) to assess heart health.
+    - **Blood Sugar Test**: Measures glucose levels to check for diabetes or prediabetes.
+    - **ECG (Electrocardiogram)**: Records the electrical activity of the heart to detect heart disease.
+    - **Voice Analysis**: Used for Parkinson's disease diagnosis by analyzing vocal patterns.
+    - **Complete Blood Count (CBC)**: Provides an overview of your overall health and detects various disorders.
+
+    These values are typically included in standard medical reports. If you already have your test results, 
+    you can proceed to the respective disease prediction section from the sidebar.
+
+    ### ⚠️ **Important Note**
+    EarlyMed is not a substitute for professional medical advice. Always consult a qualified healthcare provider 
+    for a comprehensive diagnosis and treatment plan.
+    """)
+
+    # Call to action
+    st.markdown("""
+    ### 🚀 **Get Started**
+    Use the sidebar to navigate to the disease prediction section of your choice. Enter your test results, 
+    and EarlyMed will provide you with a preliminary assessment.
+    """)
+
+    # Footer
+    st.markdown("---")
+    st.markdown("© 2023 EarlyMed. All rights reserved.")
 
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
@@ -82,7 +124,6 @@ if selected == 'Diabetes Prediction':
         
         st.success(diab_diagnosis)
 
-# Heart Disease Prediction Page
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
     st.title('Heart Disease Prediction using ML')
@@ -149,7 +190,6 @@ if selected == 'Heart Disease Prediction':
             st.error(f"Error in prediction: {e}")
 
 # Parkinson's Prediction Page
-# Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease Prediction using ML")
 
@@ -195,7 +235,8 @@ if selected == "Parkinsons Prediction":
     
     with col3:
         Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', min_value=0.0, max_value=1.0, value=0.0, help="Enter the absolute variation in fundamental frequency (0.000007–0.000260 is normal).")
-        RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=1.0, value=0.0, help="Enter the relative amplitude perturbation (0.0006–0.021 is normal).")
+        RAP = st.number_input('MDVP:RAP', min_value=0.0, max
+                RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=1.0, value=0.0, help="Enter the relative amplitude perturbation (0.0006–0.021 is normal).")
     
     with col4:
         PPQ = st.number_input('MDVP:PPQ', min_value=0.0, max_value=1.0, value=0.0, help="Enter the five-point period perturbation quotient (0.0006–0.019 is normal).")
@@ -239,3 +280,9 @@ if selected == "Parkinsons Prediction":
             st.success(parkinsons_diagnosis)
         except Exception as e:
             st.error(f"Error in prediction: {e}")
+
+# Footer for all pages
+st.markdown("---")
+st.markdown("""
+**Disclaimer**: This app is for educational and informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns.
+""")
