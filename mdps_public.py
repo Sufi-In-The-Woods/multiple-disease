@@ -149,54 +149,88 @@ if selected == 'Heart Disease Prediction':
             st.error(f"Error in prediction: {e}")
 
 # Parkinson's Prediction Page
+# Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease Prediction using ML")
-    
+
+    # Description of terms
+    st.markdown("""
+    ### Understanding the Input Fields:
+    Below are the descriptions of the terms used in this prediction model. Please provide accurate values for better results.
+
+    - **MDVP:Fo(Hz)**: Average vocal fundamental frequency. (Normal range: 88–260 Hz)
+    - **MDVP:Fhi(Hz)**: Maximum vocal fundamental frequency. (Normal range: 102–592 Hz)
+    - **MDVP:Flo(Hz)**: Minimum vocal fundamental frequency. (Normal range: 65–239 Hz)
+    - **MDVP:Jitter(%)**: Variation in fundamental frequency. (Normal range: 0.001–0.033%)
+    - **MDVP:Jitter(Abs)**: Absolute variation in fundamental frequency. (Normal range: 0.000007–0.000260)
+    - **MDVP:RAP**: Relative amplitude perturbation. (Normal range: 0.0006–0.021)
+    - **MDVP:PPQ**: Five-point period perturbation quotient. (Normal range: 0.0006–0.019)
+    - **Jitter:DDP**: Average absolute difference of differences between cycles. (Normal range: 0.0018–0.063)
+    - **MDVP:Shimmer**: Variation in amplitude. (Normal range: 0.009–0.119)
+    - **MDVP:Shimmer(dB)**: Shimmer in decibels. (Normal range: 0.085–1.302 dB)
+    - **Shimmer:APQ3**: Three-point amplitude perturbation quotient. (Normal range: 0.004–0.031)
+    - **Shimmer:APQ5**: Five-point amplitude perturbation quotient. (Normal range: 0.005–0.042)
+    - **MDVP:APQ**: Amplitude perturbation quotient. (Normal range: 0.007–0.054)
+    - **Shimmer:DDA**: Average absolute difference between consecutive differences of amplitudes. (Normal range: 0.013–0.169)
+    - **NHR**: Noise-to-harmonics ratio. (Normal range: 0.0006–0.314)
+    - **HNR**: Harmonics-to-noise ratio. (Normal range: 8.441–33.047)
+    - **RPDE**: Recurrence period density entropy. (Normal range: 0.256–0.685)
+    - **DFA**: Detrended fluctuation analysis. (Normal range: 0.574–0.825)
+    - **spread1**: Nonlinear measure of fundamental frequency variation. (Normal range: -7.964–-2.434)
+    - **spread2**: Nonlinear measure of fundamental frequency variation. (Normal range: 0.006–0.450)
+    - **D2**: Correlation dimension. (Normal range: 1.423–3.671)
+    - **PPE**: Pitch period entropy. (Normal range: 0.044–0.527)
+    """)
+
+    # Getting the input data from the user
     col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
-        fo = st.number_input('MDVP:Fo(Hz)', min_value=0.0, max_value=300.0, value=0.0)
-        fhi = st.number_input('MDVP:Fhi(Hz)', min_value=0.0, max_value=300.0, value=0.0)
+        fo = st.number_input('MDVP:Fo(Hz)', min_value=0.0, max_value=300.0, value=0.0, help="Enter the average vocal fundamental frequency (88–260 Hz is normal).")
+        fhi = st.number_input('MDVP:Fhi(Hz)', min_value=0.0, max_value=600.0, value=0.0, help="Enter the maximum vocal fundamental frequency (102–592 Hz is normal).")
     
     with col2:
-        flo = st.number_input('MDVP:Flo(Hz)', min_value=0.0, max_value=300.0, value=0.0)
-        Jitter_percent = st.number_input('MDVP:Jitter(%)', min_value=0.0, max_value=1.0, value=0.0)
+        flo = st.number_input('MDVP:Flo(Hz)', min_value=0.0, max_value=300.0, value=0.0, help="Enter the minimum vocal fundamental frequency (65–239 Hz is normal).")
+        Jitter_percent = st.number_input('MDVP:Jitter(%)', min_value=0.0, max_value=1.0, value=0.0, help="Enter the variation in fundamental frequency (0.001–0.033% is normal).")
     
     with col3:
-        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', min_value=0.0, max_value=1.0, value=0.0)
-        RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=1.0, value=0.0)
+        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', min_value=0.0, max_value=1.0, value=0.0, help="Enter the absolute variation in fundamental frequency (0.000007–0.000260 is normal).")
+        RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=1.0, value=0.0, help="Enter the relative amplitude perturbation (0.0006–0.021 is normal).")
     
     with col4:
-        PPQ = st.number_input('MDVP:PPQ', min_value=0.0, max_value=1.0, value=0.0)
-        DDP = st.number_input('Jitter:DDP', min_value=0.0, max_value=1.0, value=0.0)
+        PPQ = st.number_input('MDVP:PPQ', min_value=0.0, max_value=1.0, value=0.0, help="Enter the five-point period perturbation quotient (0.0006–0.019 is normal).")
+        DDP = st.number_input('Jitter:DDP', min_value=0.0, max_value=1.0, value=0.0, help="Enter the average absolute difference of differences between cycles (0.0018–0.063 is normal).")
     
     with col5:
-        Shimmer = st.number_input('MDVP:Shimmer', min_value=0.0, max_value=1.0, value=0.0)
-        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)', min_value=0.0, max_value=1.0, value=0.0)
+        Shimmer = st.number_input('MDVP:Shimmer', min_value=0.0, max_value=1.0, value=0.0, help="Enter the variation in amplitude (0.009–0.119 is normal).")
+        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)', min_value=0.0, max_value=1.0, value=0.0, help="Enter the shimmer in decibels (0.085–1.302 dB is normal).")
     
     with col1:
-        APQ3 = st.number_input('Shimmer:APQ3', min_value=0.0, max_value=1.0, value=0.0)
-        APQ5 = st.number_input('Shimmer:APQ5', min_value=0.0, max_value=1.0, value=0.0)
+        APQ3 = st.number_input('Shimmer:APQ3', min_value=0.0, max_value=1.0, value=0.0, help="Enter the three-point amplitude perturbation quotient (0.004–0.031 is normal).")
+        APQ5 = st.number_input('Shimmer:APQ5', min_value=0.0, max_value=1.0, value=0.0, help="Enter the five-point amplitude perturbation quotient (0.005–0.042 is normal).")
     
     with col2:
-        APQ = st.number_input('MDVP:APQ', min_value=0.0, max_value=1.0, value=0.0)
-        DDA = st.number_input('Shimmer:DDA', min_value=0.0, max_value=1.0, value=0.0)
+        APQ = st.number_input('MDVP:APQ', min_value=0.0, max_value=1.0, value=0.0, help="Enter the amplitude perturbation quotient (0.007–0.054 is normal).")
+        DDA = st.number_input('Shimmer:DDA', min_value=0.0, max_value=1.0, value=0.0, help="Enter the average absolute difference between consecutive differences of amplitudes (0.013–0.169 is normal).")
     
     with col3:
-        NHR = st.number_input('NHR', min_value=0.0, max_value=1.0, value=0.0)
-        HNR = st.number_input('HNR', min_value=0.0, max_value=1.0, value=0.0)
+        NHR = st.number_input('NHR', min_value=0.0, max_value=1.0, value=0.0, help="Enter the noise-to-harmonics ratio (0.0006–0.314 is normal).")
+        HNR = st.number_input('HNR', min_value=0.0, max_value=50.0, value=0.0, help="Enter the harmonics-to-noise ratio (8.441–33.047 is normal).")
     
     with col4:
-        RPDE = st.number_input('RPDE', min_value=0.0, max_value=1.0, value=0.0)
-        DFA = st.number_input('DFA', min_value=0.0, max_value=1.0, value=0.0)
+        RPDE = st.number_input('RPDE', min_value=0.0, max_value=1.0, value=0.0, help="Enter the recurrence period density entropy (0.256–0.685 is normal).")
+        DFA = st.number_input('DFA', min_value=0.0, max_value=1.0, value=0.0, help="Enter the detrended fluctuation analysis (0.574–0.825 is normal).")
     
     with col5:
-        spread1 = st.number_input('spread1', min_value=0.0, max_value=1.0, value=0.0)
-        spread2 = st.number_input('spread2', min_value=0.0, max_value=1.0, value=0.0)
+        spread1 = st.number_input('spread1', min_value=-10.0, max_value=0.0, value=0.0, help="Enter the nonlinear measure of fundamental frequency variation (-7.964–-2.434 is normal).")
+        spread2 = st.number_input('spread2', min_value=0.0, max_value=1.0, value=0.0, help="Enter the nonlinear measure of fundamental frequency variation (0.006–0.450 is normal).")
     
     with col1:
-        D2 = st.number_input('D2', min_value=0.0, max_value=1.0, value=0.0)
-        PPE = st.number_input('PPE', min_value=0.0, max_value=1.0, value=0.0)
+        D2 = st.number_input('D2', min_value=0.0, max_value=5.0, value=0.0, help="Enter the correlation dimension (1.423–3.671 is normal).")
+        PPE = st.number_input('PPE', min_value=0.0, max_value=1.0, value=0.0, help="Enter the pitch period entropy (0.044–0.527 is normal).")
+    
+    # Code for Prediction
+    parkinsons_diagnosis = ''
     
     if st.button("Parkinson's Test Result"):
         try:
