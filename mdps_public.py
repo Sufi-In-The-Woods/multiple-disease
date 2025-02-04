@@ -83,37 +83,62 @@ if selected == 'Diabetes Prediction':
         st.success(diab_diagnosis)
 
 # Heart Disease Prediction Page
+# Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
     st.title('Heart Disease Prediction using ML')
-    
+
+    # Description of terms
+    st.markdown("""
+    ### Understanding the Input Fields:
+    Below are the descriptions of the terms used in this prediction model. Please provide accurate values for better results.
+
+    - **Age**: The age of the person in years. (Normal range: 29–77 years)
+    - **Sex**: The gender of the person (0 = female, 1 = male).
+    - **Chest Pain Type**: The type of chest pain experienced. (0 = typical angina, 1 = atypical angina, 2 = non-anginal pain, 3 = asymptomatic)
+    - **Resting Blood Pressure**: The resting blood pressure in mmHg. (Normal range: 90–120 mmHg)
+    - **Serum Cholesterol**: The serum cholesterol level in mg/dL. (Normal range: 126–200 mg/dL)
+    - **Fasting Blood Sugar**: Indicates if fasting blood sugar is > 120 mg/dL (1 = true, 0 = false).
+    - **Resting Electrocardiographic Results**: The results of the resting ECG. (0 = normal, 1 = ST-T wave abnormality, 2 = left ventricular hypertrophy)
+    - **Maximum Heart Rate Achieved**: The maximum heart rate achieved during exercise. (Normal range: 71–202 bpm)
+    - **Exercise Induced Angina**: Indicates if angina was induced by exercise (1 = yes, 0 = no).
+    - **ST Depression Induced by Exercise**: The ST depression induced by exercise relative to rest. (Normal range: 0–6.2 mm)
+    - **Slope of the Peak Exercise ST Segment**: The slope of the peak exercise ST segment. (0 = upsloping, 1 = flat, 2 = downsloping)
+    - **Number of Major Vessels Colored by Fluoroscopy**: The number of major vessels colored by fluoroscopy (0–3).
+    - **Thalassemia**: A blood disorder called thalassemia. (0 = normal, 1 = fixed defect, 2 = reversible defect)
+    """)
+
+    # Getting the input data from the user
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        age = st.number_input('Age', min_value=0, max_value=120, value=0)
-        sex = st.number_input('Sex (0 = female, 1 = male)', min_value=0, max_value=1, value=0)
+        age = st.number_input('Age', min_value=0, max_value=120, value=0, help="Enter the age of the person (29–77 years is normal).")
+        sex = st.number_input('Sex (0 = female, 1 = male)', min_value=0, max_value=1, value=0, help="Enter 0 for female or 1 for male.")
     
     with col2:
-        cp = st.number_input('Chest Pain types (0-3)', min_value=0, max_value=3, value=0)
-        trestbps = st.number_input('Resting Blood Pressure', min_value=0, max_value=200, value=0)
+        cp = st.number_input('Chest Pain Type (0–3)', min_value=0, max_value=3, value=0, help="Enter the type of chest pain (0 = typical angina, 1 = atypical angina, 2 = non-anginal pain, 3 = asymptomatic).")
+        trestbps = st.number_input('Resting Blood Pressure (mmHg)', min_value=0, max_value=200, value=0, help="Enter the resting blood pressure in mmHg (90–120 mmHg is normal).")
     
     with col3:
-        chol = st.number_input('Serum Cholestoral in mg/dl', min_value=0, max_value=600, value=0)
-        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl (1 = true, 0 = false)', min_value=0, max_value=1, value=0)
+        chol = st.number_input('Serum Cholesterol (mg/dL)', min_value=0, max_value=600, value=0, help="Enter the serum cholesterol level in mg/dL (126–200 mg/dL is normal).")
+        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dL (1 = true, 0 = false)', min_value=0, max_value=1, value=0, help="Enter 1 if fasting blood sugar > 120 mg/dL, else 0.")
     
     with col1:
-        restecg = st.number_input('Resting Electrocardiographic results (0-2)', min_value=0, max_value=2, value=0)
-        thalach = st.number_input('Maximum Heart Rate achieved', min_value=0, max_value=300, value=0)
+        restecg = st.number_input('Resting Electrocardiographic Results (0–2)', min_value=0, max_value=2, value=0, help="Enter the resting ECG results (0 = normal, 1 = ST-T wave abnormality, 2 = left ventricular hypertrophy).")
+        thalach = st.number_input('Maximum Heart Rate Achieved (bpm)', min_value=0, max_value=300, value=0, help="Enter the maximum heart rate achieved during exercise (71–202 bpm is normal).")
     
     with col2:
-        exang = st.number_input('Exercise Induced Angina (1 = yes, 0 = no)', min_value=0, max_value=1, value=0)
-        oldpeak = st.number_input('ST depression induced by exercise', min_value=0.0, max_value=10.0, value=0.0)
+        exang = st.number_input('Exercise Induced Angina (1 = yes, 0 = no)', min_value=0, max_value=1, value=0, help="Enter 1 if angina was induced by exercise, else 0.")
+        oldpeak = st.number_input('ST Depression Induced by Exercise (mm)', min_value=0.0, max_value=10.0, value=0.0, help="Enter the ST depression induced by exercise (0–6.2 mm is normal).")
     
     with col3:
-        slope = st.number_input('Slope of the peak exercise ST segment (0-2)', min_value=0, max_value=2, value=0)
-        ca = st.number_input('Major vessels colored by flourosopy (0-3)', min_value=0, max_value=3, value=0)
+        slope = st.number_input('Slope of the Peak Exercise ST Segment (0–2)', min_value=0, max_value=2, value=0, help="Enter the slope of the peak exercise ST segment (0 = upsloping, 1 = flat, 2 = downsloping).")
+        ca = st.number_input('Number of Major Vessels Colored by Fluoroscopy (0–3)', min_value=0, max_value=3, value=0, help="Enter the number of major vessels colored by fluoroscopy (0–3).")
     
     with col1:
-        thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect', min_value=0, max_value=2, value=0)
+        thal = st.number_input('Thalassemia (0 = normal, 1 = fixed defect, 2 = reversible defect)', min_value=0, max_value=2, value=0, help="Enter the thalassemia value (0 = normal, 1 = fixed defect, 2 = reversible defect).")
+    
+    # Code for Prediction
+    heart_diagnosis = ''
     
     if st.button('Heart Disease Test Result'):
         try:
