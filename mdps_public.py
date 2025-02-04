@@ -25,17 +25,17 @@ if selected == 'Home':
     # Display the logo at the top of the page
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
 
-    st.title("Welcome to EarlyMed - Your Early Disease Detection Tool")
+    st.title("Welcome to Test Report Interpreter - Your Early Disease Detection Tool")
     
     # Welcome text
     st.markdown("""
     ### 🩺 **About EarlyMed**
-    EarlyMed is a SaaS platform designed to help you understand your medical test results before visiting a doctor. 
+    EarlyMed is a platform designed by a team of VIT-AP University to help you understand your medical test results before visiting a doctor. 
     If you've recently undergone medical tests at a pathology lab but haven't had the chance to consult a doctor yet, 
     this tool can provide you with preliminary insights into your health.
 
-    ### 🎯 **What We Diagnose**
-    EarlyMed currently supports the diagnosis of the following diseases:
+    ### 🎯 **What will we do in this Test Report Interpreter?**
+   If you've been diagnosed with any of the following diseases and have received your lab test report but haven't had the chance to consult a doctor yet, we're here to help. Currently, we support three diseases, but more disorders will be added soon!
     1. **Diabetes**: Predicts the likelihood of diabetes based on factors like glucose levels, blood pressure, and BMI.
     2. **Heart Disease**: Assesses the risk of heart disease using parameters like cholesterol levels, blood pressure, and ECG results.
     3. **Parkinson's Disease**: Evaluates the possibility of Parkinson's disease using voice analysis and other biomarkers.
@@ -68,7 +68,7 @@ if selected == 'Home':
 
     # Footer
     st.markdown("---")
-    st.markdown("© 2023 EarlyMed. All rights reserved.")
+    st.markdown("© 2025 EarlyMed. All rights reserved.")
 
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
