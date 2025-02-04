@@ -235,8 +235,7 @@ if selected == "Parkinsons Prediction":
     
     with col3:
         Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', min_value=0.0, max_value=1.0, value=0.0, help="Enter the absolute variation in fundamental frequency (0.000007–0.000260 is normal).")
-        RAP = st.number_input('MDVP:RAP', min_value=0.0, max
-                RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=1.0, value=0.0, help="Enter the relative amplitude perturbation (0.0006–0.021 is normal).")
+        RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=1.0, value=0.0, help="Enter the relative amplitude perturbation (0.0006–0.021 is normal).")
     
     with col4:
         PPQ = st.number_input('MDVP:PPQ', min_value=0.0, max_value=1.0, value=0.0, help="Enter the five-point period perturbation quotient (0.0006–0.019 is normal).")
