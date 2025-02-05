@@ -119,9 +119,9 @@ if selected == 'Diabetes Prediction Based on Test Reports':
         diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
         
         if diab_prediction[0] == 1:
-            diab_diagnosis = 'The person is diabetic'
+            diab_diagnosis = 'We are sorry to say that, you are diabetic'
         else:
-            diab_diagnosis = 'The person is not diabetic'
+            diab_diagnosis = 'Congratulations! you are not diabetic'
         
         st.success(diab_diagnosis)
 
@@ -186,16 +186,17 @@ if selected == 'Heart Risk Prediction Based on Test Reports':
     if st.button('Heart Disease Test Result'):
         try:
             heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-            heart_diagnosis = 'The person is having heart disease' if heart_prediction[0] == 1 else 'The person does not have any heart disease'
+            heart_diagnosis = 'Your Heart is at Risk' if heart_prediction[0] == 1 else 'Your Heart is not at risk'
             st.success(heart_diagnosis)
         except Exception as e:
             st.error(f"Error in prediction: {e}")
 
 # Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
+     # Display the logo at the top of the page
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)
     st.title("Parkinson's Prediction Based on Test Reports")
- # Display the logo at the top of the page
-    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
+ 
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
@@ -278,7 +279,7 @@ if selected == "Parkinsons Prediction":
     if st.button("Parkinson's Test Result"):
         try:
             parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
-            parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
+            parkinsons_diagnosis = "Your patient has Parkinson's disease" if parkinsons_prediction[0] == 1 else "Congratulations! your patient does not have Parkinson's disease"
             st.success(parkinsons_diagnosis)
         except Exception as e:
             st.error(f"Error in prediction: {e}")
@@ -286,5 +287,5 @@ if selected == "Parkinsons Prediction":
 # Footer for all pages
 st.markdown("---")
 st.markdown("""
-**Disclaimer**: This app is for educational and informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns.
+**Disclaimer**: This app is for educational and informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns. It can only be used to get aware of the health before going to the doctor.
 """)
