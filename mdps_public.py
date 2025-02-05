@@ -14,16 +14,16 @@ except Exception as e:
 # Sidebar for navigation
 with st.sidebar:
     selected = option_menu(
-        'Multiple Disease Prediction System',
-        ['Home', 'Diabetes Prediction', 'Heart Disease Prediction', 'Parkinsons Prediction'],  # Add 'Home' here
-        icons=['house', 'activity', 'heart', 'person'],  # Add 'house' icon for Home
-        default_index=0  # Set Home as the default page
+        'Test Report Interpreter',
+        ['Home', 'Diabetes Prediction Based on Test Reports', 'Heart Risk Prediction Based on Test Reports', 'Parkinsons Prediction'],  
+        icons=['house', 'activity', 'heart', 'person'],  
+        default_index=0  
     )
 
 # Home Page
 if selected == 'Home':
-    # Display the logo at the top of the page
-    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
+    
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  
 
     st.title("Welcome to Test Report Interpreter - Your Early Disease Detection Tool")
     
@@ -71,10 +71,10 @@ if selected == 'Home':
     st.markdown("© 2025 EarlyMed. All rights reserved.")
 
 # Diabetes Prediction Page
-if selected == 'Diabetes Prediction':
+if selected == 'Diabetes Prediction Based on Test Reports':
      # Display the logo at the top of the page
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
-    st.title('Diabetes Prediction using ML')
+    st.title('Diabetes Prediction Based on Test Reports')
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
@@ -126,8 +126,8 @@ if selected == 'Diabetes Prediction':
         st.success(diab_diagnosis)
 
 # Heart Disease Prediction Page
-if selected == 'Heart Disease Prediction':
-    st.title('Heart Disease Prediction using ML')
+if selected == 'Heart Risk Prediction Based on Test Reports':
+    st.title('Heart Risk Prediction using ML')
  # Display the logo at the top of the page
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     # Description of terms
@@ -193,7 +193,7 @@ if selected == 'Heart Disease Prediction':
 
 # Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
-    st.title("Parkinson's Disease Prediction using ML")
+    st.title("Parkinson's Prediction Based on Test Reports")
  # Display the logo at the top of the page
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     # Description of terms
