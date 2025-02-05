@@ -56,11 +56,6 @@ st.markdown("""
         padding: 20px !important;
     }
 
-    /* Sidebar styling */
-    .css-1d391kg {
-        background: linear-gradient(180deg, #2c3e50, #3498db) !important;
-    }
-
     /* Title styling */
     h1, h2, h3 {
         background: linear-gradient(120deg, #3498db, #2980b9);
@@ -98,22 +93,27 @@ except Exception as e:
     st.error(f"Error loading models: {e}")
     st.stop()
 
-# Sidebar for navigation with enhanced styling
-with st.sidebar:
-    selected = option_menu(
-        'Test Report Interpreter',
-        ['Home', 'Diabetes Prediction Based on Test Reports', 'Heart Risk Prediction Based on Test Reports', 'Parkinsons Prediction'],  
-        icons=['house-heart-fill', 'activity', 'heart-pulse-fill', 'person-walking'],  
-        menu_icon="hospital-fill",
-        default_index=0,
-        styles={
-            "container": {"padding": "5px", "background-color": "rgba(255,255,255,0.1)"},
-            "icon": {"color": "#3498db", "font-size": "25px"}, 
-            "nav-link": {"color": "white", "font-size": "16px", "text-align": "left", "margin":"0px", 
-                        "padding": "10px", "border-radius": "10px"},
-            "nav-link-selected": {"background-color": "rgba(255,255,255,0.2)"},
-        }
-    )
+# Horizontal menu instead of sidebar
+selected = option_menu(
+    menu_title=None,
+    options=['Home', 'Diabetes Prediction', 'Heart Risk Prediction', 'Parkinsons Prediction'],
+    icons=['house-heart-fill', 'activity', 'heart-pulse-fill', 'person-walking'],
+    menu_icon="cast",
+    default_index=0,
+    orientation="horizontal",
+    styles={
+        "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.1)"},
+        "icon": {"color": "#3498db", "font-size": "25px"}, 
+        "nav-link": {
+            "font-size": "16px",
+            "text-align": "left",
+            "margin": "0px",
+            "padding": "10px",
+            "--hover-color": "rgba(255,255,255,0.2)"
+        },
+        "nav-link-selected": {"background-color": "rgba(255,255,255,0.2)"},
+    }
+)
 
 # Home Page
 if selected == 'Home':
@@ -166,7 +166,7 @@ if selected == 'Home':
     st.markdown("© 2025 EarlyMed. All rights reserved.")
 
 # Diabetes Prediction Page
-if selected == 'Diabetes Prediction Based on Test Reports':
+if selected == 'Diabetes Prediction':
      # Display the logo at the top of the page
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     st.title('Diabetes Prediction Based on Test Reports')
@@ -221,7 +221,7 @@ if selected == 'Diabetes Prediction Based on Test Reports':
         st.success(diab_diagnosis)
 
 # Heart Disease Prediction Page
-if selected == 'Heart Risk Prediction Based on Test Reports':
+if selected == 'Heart Risk Prediction':
     st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)
     st.title('Heart Risk Prediction Based on Test Reports')
     # Description of terms
