@@ -1,6 +1,11 @@
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from PIL import Image
 
 # Load the saved models
 try:
@@ -11,6 +16,53 @@ except Exception as e:
     st.error(f"Error loading models: {e}")
     st.stop()
 
+# Set page config for a modern look
+st.set_page_config(
+    page_title="EarlyMed - Test Report Interpreter",
+    page_icon="🩺",
+    layout="wide"
+)
+
+# Custom Styles for Premium Glassy UI
+def set_glassy_style():
+    st.markdown("""
+    <style>
+        body {
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+            font-family: 'Arial', sans-serif;
+        }
+        .stButton>button {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 10px 24px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .stButton>button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .stTextInput>div>div>input {
+            border-radius: 10px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .stSidebar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .stSelectbox>div>div {
+            border-radius: 10px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+set_glassy_style()
 # Sidebar for navigation
 with st.sidebar:
     selected = option_menu(
