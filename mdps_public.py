@@ -127,9 +127,8 @@ if selected == 'Diabetes Prediction Based on Test Reports':
 
 # Heart Disease Prediction Page
 if selected == 'Heart Risk Prediction Based on Test Reports':
+    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)
     st.title('Heart Risk Prediction Based on Test Reports')
- # Display the logo at the top of the page
-    st.image("https://i.postimg.cc/vHZ4bWMx/logo.png", width=200)  # Adjust width as needed
     # Description of terms
     st.markdown("""
     ### Understanding the Input Fields:
