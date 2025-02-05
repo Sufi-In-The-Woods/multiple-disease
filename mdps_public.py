@@ -2,6 +2,93 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+# Custom CSS for glassy premium look
+st.markdown("""
+<style>
+    /* Main container styling */
+    .main {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.18);
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+        padding: 20px;
+    }
+
+    /* Input fields styling */
+    .stNumberInput, .stTextInput {
+        background: rgba(255,255,255,0.1) !important;
+        border-radius: 10px !important;
+        padding: 10px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Button styling */
+    .stButton>button {
+        background: linear-gradient(45deg, #3498db, #2980b9) !important;
+        color: white !important;
+        border-radius: 15px !important;
+        padding: 10px 25px !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .stButton>button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3) !important;
+    }
+
+    /* Success message styling */
+    .stSuccess {
+        background: linear-gradient(135deg, rgba(46,213,115,0.2), rgba(46,213,115,0.1)) !important;
+        border-radius: 15px !important;
+        border: 1px solid rgba(46,213,115,0.3) !important;
+        padding: 20px !important;
+    }
+
+    /* Error message styling */
+    .stError {
+        background: linear-gradient(135deg, rgba(255,71,87,0.2), rgba(255,71,87,0.1)) !important;
+        border-radius: 15px !important;
+        border: 1px solid rgba(255,71,87,0.3) !important;
+        padding: 20px !important;
+    }
+
+    /* Sidebar styling */
+    .css-1d391kg {
+        background: linear-gradient(180deg, #2c3e50, #3498db) !important;
+    }
+
+    /* Title styling */
+    h1, h2, h3 {
+        background: linear-gradient(120deg, #3498db, #2980b9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold !important;
+    }
+
+    /* Card styling for sections */
+    .css-1y4p8pa {
+        border-radius: 20px !important;
+        padding: 20px !important;
+        background: rgba(255,255,255,0.05) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37) !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Set page config
+st.set_page_config(
+    page_title="EarlyMed - Test Report Interpreter",
+    page_icon="🏥",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # Load the saved models
 try:
     diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
@@ -11,13 +98,21 @@ except Exception as e:
     st.error(f"Error loading models: {e}")
     st.stop()
 
-# Sidebar for navigation
+# Sidebar for navigation with enhanced styling
 with st.sidebar:
     selected = option_menu(
         'Test Report Interpreter',
         ['Home', 'Diabetes Prediction Based on Test Reports', 'Heart Risk Prediction Based on Test Reports', 'Parkinsons Prediction'],  
-        icons=['house', 'activity', 'heart', 'person'],  
-        default_index=0  
+        icons=['house-heart-fill', 'activity', 'heart-pulse-fill', 'person-walking'],  
+        menu_icon="hospital-fill",
+        default_index=0,
+        styles={
+            "container": {"padding": "5px", "background-color": "rgba(255,255,255,0.1)"},
+            "icon": {"color": "#3498db", "font-size": "25px"}, 
+            "nav-link": {"color": "white", "font-size": "16px", "text-align": "left", "margin":"0px", 
+                        "padding": "10px", "border-radius": "10px"},
+            "nav-link-selected": {"background-color": "rgba(255,255,255,0.2)"},
+        }
     )
 
 # Home Page
