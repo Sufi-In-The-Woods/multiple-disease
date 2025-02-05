@@ -2,6 +2,14 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+# Set page config must be the first Streamlit command
+st.set_page_config(
+    page_title="EarlyMed - Test Report Interpreter",
+    page_icon="🏥",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # Custom CSS for glassy premium look
 st.markdown("""
 <style>
@@ -75,14 +83,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-# Set page config
-st.set_page_config(
-    page_title="EarlyMed - Test Report Interpreter",
-    page_icon="🏥",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Load the saved models
 try:
